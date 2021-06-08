@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link rel="stylesheet" href="./collections.component.css">y
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <ul>
+                <li><button class="btn" >profile</button></li>
+                <li><button class="btn" routerLink='login' routerLinkActive="active">login</button></li>
+                <li><button class="btn"  routerLink='signup' routerLinkActive="active">register</button></li>
+                <li><button class="btn" routerLink='collections' routerLinkActive="active">collections</button></li>
+                <li><button class="btn">mycart</button></li>
+                <li><button class="btn">myorders</button></li>
+                <li><button class="btn" *ngIf="loggedIn">logout</button></li>
+            </ul>
+        </nav>
+       </div>
+
+   <!-- <div class="product-box">
+       <div class="image-box">
+           <img src="https://www.mensitaly.com/images1/Mens-Cream-Suits.jpg" alt="image">
+       </div>
+       <div class="details-box">
+         <p><strong>product:</strong></p>
+         <p><strong>price:</strong></p>
+         <p><strong>category:</strong></p>
+         <button class="btn">add to cart</button>
+       </div>
+   </div> -->
+
+   <div class="product-box" *ngFor="let product of myProducts">
+     <div class="image-box">
+        <img src="{{product.productimage}}" alt="image">
+     </div>
+     <div class="details-box">
+       <p><strong>product:{{product.productname}}</strong></p>     
+       <p><strong>price:{{product.price}}</strong></p>
+       <p><strong>category:{{product.category}}</strong></p>
+       <button class="btn" (click)="addItemToCart(product)">add to cart</button> 
+       <!-- <button class="btn" (click)="addItemToCart(product)">add to cart</button>  -->
+     </div>
+   </div>
+
+</body>
+</html> 

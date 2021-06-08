@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mycart</title>
+    <link rel="stylesheet" href="./cart.component.css">
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <ul>
+                <li><button class="btn" >profile</button></li>
+                <li><button class="btn" routerLink='login' routerLinkActive="active">login</button></li>
+                <li><button class="btn" routerLink='signup' routerLinkActive="active">register</button></li>
+                <li><button class="btn" routerLink='collections' routerLinkActive="active">collections</button></li>
+                <li><button class="btn">mycart</button></li>
+                <li><button class="btn">myorders</button></li>
+                <li><button class="btn">logout</button></li>
+            </ul>
+        </nav>
+       </div>
+
+    
+       <div class="product-box" *ngFor="let product of products">
+        <div class="image-box">
+            <img src="{{product.productimage}}" alt="image">
+        </div>
+        <div class="details-box">
+          <p><strong>product:{{product.productname}}</strong></p>
+          <p><strong>price:{{product.price}}</strong></p>
+          <p><strong>category:{{product.category}}</strong></p>
+          <button class="btn">remove from cart</button>
+        </div>
+    </div>
+
+    <hr>
+    <button class="checkout-box">checkout</button>
+</body>
+</html>

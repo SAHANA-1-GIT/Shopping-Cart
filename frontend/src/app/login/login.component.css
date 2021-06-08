@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.hero{
+    
+    height: 100%;
+    width: 100%;
+    background-position: center;    
+    background-size: cover;
+    position: absolute;
+}
+.form-box{
+    width: 380px;
+    height: 400px;
+    position: relative;
+    margin: 10% auto;
+    background:#efefef;
+    padding: 5px;
+    
+}
+.button-box{
+    width: 100px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #ff61241f;
+    border-radius: 50px;
+}
+.toggle-btn{
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+#btn{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background-color: #ce9c9d;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+.input-group{
+    top: 120px;
+    position: absolute;
+    width: 280px;
+    transition: 0.5s;
+}
+.input-field{
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 1px solid #999;
+    border-right: 0;
+    outline: none;
+    background: transparent;
+}
+.submit-btn{
+  width: 100px;
+  
+  margin-top: 30px;
+  margin-left: 100px;
+  padding: 10px 30px;
+  background-color: #ce9c9d;
+  border-color: #ce9c9d;
+  border-radius: 50px;
+}
+#login{
+    left: 50px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    
+  }
+  .hero1{
+    background-color:#f0ede8;
+    height:15vh;
+    width:100%;
+    background-position: center;
+    background-size: cover;
+    padding-left: 10%;
+    padding-right: 10%; 
+    position: fixed;
+  }
+  .hero1 nav{
+    
+    height: 30vh;
+    width: 100%;
+    position: fixed;  
+  }
+  nav ul{
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+  }
+  nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px;
+  }
+  nav ul li .btn{
+    border-radius: 50px;
+    background-color: #ce9c9d;
+    border-color: #ce9c9d;
+    text-decoration: none;
+    padding: 3px 10px;
+    margin-right:10px ;
+  }

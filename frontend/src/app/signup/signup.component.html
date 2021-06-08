@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="./signup.component.css">
+</head>
+<body>
+    
+    <div class="hero1">
+        <nav>
+            <ul>
+                <li><button class="btn">profile</button></li>
+                <li><button class="btn" routerLink='login' routerLinkActive="active">login</button></li>
+                <li><button class="btn"  routerLink='signup' routerLinkActive="active">register</button></li>
+                <li><button class="btn" routerLink='collections' routerLinkActive="active">collections</button></li>
+                <li><button class="btn">mycart</button></li>
+                <li><button class="btn">myorders</button></li>
+                <li><button class="btn" *ngIf="loggedIn">logout</button></li>
+            </ul>
+        </nav>
+       </div>
+    
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn">Register</button>
+                
+            </div>
+           
+            
+            <form class="input-group" id="register" #signupDetails="ngForm" (ngSubmit)="onSubmit()" novalidate>
+                <!-- {{signupForm.value | json}} -->
+                <input type="text" class="input-field" placeholder="user-name" required name="username" [(ngModel)]='userModel.username'>
+                <input type="email" class="input-field" placeholder="email-id" required name="emailid" [(ngModel)]="userModel.emailid">
+                <input type="password" class="input-field" placeholder="password" required name="password" [(ngModel)]="userModel.password">
+                <button type="submit" class="submit-btn">register</button> 
+               </form>
+               <!-- <button type="submit" class="submit-btn">register</button> -->
+        </div>   
+    </div>
+   
+</body>
+</html>
+
