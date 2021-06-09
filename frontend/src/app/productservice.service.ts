@@ -9,16 +9,25 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 export class ProductserviceService {
    _products=[] as any;
    productsSub;
-   _cart= [];
+
+   _cart= [] as any;
    cartSub: any;
+   
+   _order=[] as any;
+   orderSub:any;
 
    _url='http://localhost:3000/products';
    
-   _cartApi="http://localhost:7000/product/:id";
+   _cartApi="http://localhost:7000/product";
+   _getCart="http://localhost:7000/cart";
+
+   _orderApi="http://localhost:4000/orders";
    
   
   constructor(private http:HttpClient) { 
-    this.productsSub = new BehaviorSubject<any[]>(this._products);     
+    this.productsSub = new BehaviorSubject<any[]>(this._products); 
+    this.cartSub = new BehaviorSubject<any[]>(this._cart); 
+    this.orderSub = new BehaviorSubject<any[]>(this._order); 
   }
 
  getProducts(){
@@ -31,7 +40,35 @@ export class ProductserviceService {
  displayProducts(){
    return this.productsSub.asObservable();
  }
- 
+ //when user clicks on add to cart product will be added to cart
+ addProduct(product: any) {
+     return this.http.post<any>(this._cartApi, product);
+ }
+
+getCart(){
+  this.http.get<any[]>(this._getCart).subscribe(data=>{
+    this._cart=[...data];
+    this.cartSub.next([...this._cart]);
+  });
+}
+
+displayCart(){
+  return this.cartSub.asObservable();
+}
+
+getOrder(){
+  this.http.get<any[]>(this._orderApi).subscribe(data =>{
+    this._order=[...data];
+    this.orderSub.next([...this._order]);
+  });
+}
+
+displayOrder(){
+  return this.orderSub.asObservable();
+
+}
+
+ /*
  getCart() {
    return this.cartSub.asObservable();
  }
@@ -78,7 +115,7 @@ export class ProductserviceService {
    return this.http.post(this._cartApi, data);
  }
 
-
+*/
 }
   
 

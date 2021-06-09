@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home page</title>
     <link rel="stylesheet" href="./home.component.css">
+    
 </head>
 <body>
      <div class="hero">
@@ -15,8 +16,8 @@
               <li><button class="btn" routerLink='login' routerLinkActive="active">login</button></li>
               <li><button class="btn" routerLink='signup' routerLinkActive="active">register</button></li>
               <li><button class="btn" routerLink='collections' routerLinkActive="active">collections</button></li>
-              <li><button class="btn" routerLink='cart' routerLinkActive="active">mycart</button></li>
-              <li><button class="btn" routerLink='myorders' routerLinkActive="active">myorders</button></li>
+              <li><button class="btn" routerLink='cart' routerLinkActive="active">mycart<sup>5</sup></button></li>
+              <li><button class="btn" routerLink='orders' routerLinkActive="active">myorders</button></li>
               <li><button class="btn" *ngIf="loggedIn">logout</button></li>
           </ul>
       </nav>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./order.component.css">
 </head>
 <body>
-    <div class="hero">
+    <!-- <div class="hero">
         <nav>
             <ul>
                 <li><button class="btn" >profile</button></li>
@@ -20,19 +20,22 @@
                 <li><button class="btn">logout</button></li>
             </ul>
         </nav>
-       </div>
+       </div> -->
 
 
-       <div class="product-box">
+       <div class="product-box" *ngFor="let order of myOrders">
         <div class="image-box">
-            <img src="https://www.mensitaly.com/images1/Mens-Cream-Suits.jpg" alt="image">
+            <img src="{{order.productimage}}" alt="image">
         </div>
         <div class="details-box">
-          <p><strong>product:</strong></p>
-          <p><strong>price:</strong></p>
-          <p><strong>category:</strong></p>
-          <button class="btn">cancel order</button>
+          <p><strong>product:{{order.productname}}</strong></p>
+          <p><strong>price:{{order.price}}</strong></p>
+          <p><strong>category:{{order.category}}</strong></p>
+          <button class="btn">ordered</button>
+          
         </div>
-    </div>
+      </div>
+    <hr>
+    
 </body>
 </html>

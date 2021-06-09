@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="./cart.component.css">
 </head>
 <body>
-    <div class="hero">
+    
+    <!-- <div class="hero">
         <nav>
             <ul>
                 <li><button class="btn" >profile</button></li>
@@ -20,10 +21,10 @@
                 <li><button class="btn">logout</button></li>
             </ul>
         </nav>
-       </div>
+    </div> -->
 
     
-       <div class="product-box" *ngFor="let product of products">
+    <div class="product-box" *ngFor="let product of products">
         <div class="image-box">
             <img src="{{product.productimage}}" alt="image">
         </div>
@@ -36,6 +37,6 @@
     </div>
 
     <hr>
-    <button class="checkout-box">checkout</button>
+    <button class="checkout-box">place order</button>
 </body>
 </html>

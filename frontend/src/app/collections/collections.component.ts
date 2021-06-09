@@ -13,7 +13,7 @@ export class CollectionsComponent implements OnInit {
                  ];
 
   myProducts=[] as any;    
- 
+  
 
   loggedIn=false;
   constructor(private productservice:ProductserviceService) { }
@@ -25,8 +25,18 @@ export class CollectionsComponent implements OnInit {
      });
 
   }
-  
 
+  addToCart(product: any) {
+    console.log(product);
+    this.productservice.addProduct(product)
+    .subscribe(
+      (      data: any) => console.log("success",data),
+      (      error: any) => console.log('error',error)
+    )
+     return product;
+  }
+  
+/*
   addItemToCart(product: { _id: any; }){
     
     this.productservice.addToCart(product._id);
@@ -36,5 +46,5 @@ export class CollectionsComponent implements OnInit {
   itemInCart(product: any){
     return this.productservice.findItemInCart(product._id);
   }
-
+*/
 }
