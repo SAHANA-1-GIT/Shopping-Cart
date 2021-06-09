@@ -36,20 +36,16 @@ const { response } = require('express');
  */
 
 
-router.post('/product/:id',(req,res)=>{
-    var newCart={
-        ProductId:mongoose.Types.ObjectId(req.body.ProductId)
-    };
-   var cart= new Cart(newCart);
-   cart.save()
-   .then(()=>{
-       console.log('product added to cart');
-   }).catch((err)=>{
-        if(err){
-            console.log('product cannot add to cart');
-        }
-   });
-    res.send('POST req');
+router.post('/product',async (req,res)=>{
+    console.log('post req'); 
+    console.log(req.body);
+    var product=new Cart(req.body);
+    try{
+       await product.save();
+        res.send("product added to cart");
+    } catch(err){
+        res.send('product cannot be added to cart');
+    }
 });
 
 
@@ -88,21 +84,18 @@ router.post('/product/:id',(req,res)=>{
  */
 
 router.get('/cart',async (req,res)=>{
-    var cart=await Cart.find();
-    const response = [];
-    for(let i in cart){
-        let p =cart[i];
-        var product = await axios.get("http://localhost:3000/product/"+ p.ProductId);
-        cart[i].product = product.data;
-        response.push({...product.data});
+    console.log('get req');
+    try{
+       const products= await Cart.find();
+       res.send(products);
+       console.log(products);
+    } catch(err){
+        res.send('oops..cannot get products');
     }
-    res.send(response);
-    res.json(response);
+   
 });
 
-router.put('/',(req,res)=>{
-    res.send('UPDATE req');
-});
+
 
 /**
  * @swagger
@@ -138,16 +131,16 @@ router.put('/',(req,res)=>{
  *                         description: category of the product.         
  */
 
-router.delete('/cart/:id',(req,res)=>{
-    Cart.findOneAndDelete(req.params.id)
-    .then(()=>{
-        res.send('product removed from cart');
-    }).catch((err)=>{
+router.delete('/cart/:id',async (req,res)=>{
+    try{
+      await  Cart.findOneAndDelete(req.params.id);
+       res.send('product deleted from cart');
+    } catch(err){
           if(err){
               res.send('product cannot remove from cart');
           }
-    });
-    res.send('DELETE req');
+    }
+    
 });
 /*
 router.post('/product', async(req,res)=>{

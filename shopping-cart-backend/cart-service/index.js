@@ -32,7 +32,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //connection to mongodb
 mongoose.connect('mongodb+srv://sahanams:sahana.01@cluster0.mwut0.mongodb.net/Cart',{useNewUrlParser:true,
      useUnifiedTopology:true, useFindAndModify:false},
-         console.log('connected to mongodb')
+         console.log('connected to mongodb') 
 );
 mongoose.Promise = global.Promise;
 

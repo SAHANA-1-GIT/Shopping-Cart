@@ -33,22 +33,16 @@ const Order=require('../order-model/model');
  */
 
 
-router.post('/product/:id',async (req,res)=>{
-    var newOrder={
-        ProductId:mongoose.Types.ObjectId(req.body.ProductId)
-    };
-   var order= new Order(newOrder);
-  await order.save()
-   .then(()=>{
-       console.log('order placed');
-       res.send('order placed');
-   }).catch((err)=>{
-        if(err){
-            console.log('cannot process the order');
-            res.send('cannot place the order');
-        }
-   });
-    res.send('POST req');
+router.post('/order',async (req,res)=>{
+    console.log('post req'); 
+    console.log(req.body);
+    var product=new Order(req.body);
+    try{
+       await product.save();
+        res.send("Order placed");
+    } catch(err){
+        res.send('order cannot be placed');
+    }
 
 });
 
@@ -82,15 +76,14 @@ router.post('/product/:id',async (req,res)=>{
  */
 
 router.get('/orders', async (req,res)=>{
-    var order=await Order.find();
-    const response = [];
-    for(let i in order){
-        let p =order[i];
-        var product = await axios.get("http://localhost:3000/product/"+ p.ProductId);
-        order[i].product = product.data;
-        response.push({...product.data});
+    console.log('get req');
+    try{
+       const products= await Order.find();
+       res.send(products);
+       console.log(products);
+    } catch(err){
+        res.send('oops..cannot get orders');
     }
-    res.json(reponse);
 });
 
 /**
@@ -122,16 +115,15 @@ router.get('/orders', async (req,res)=>{
  */
 
 
-router.delete('/orders/:id',(req,res)=>{
-    Order.findOneAndDelete(req.params.id)
-    .then(()=>{
-        res.send('order cancelled');
-    }).catch((err)=>{
-          if(err){
-              res.send('order cannot be cancelled');
-          }
-    });
-    res.send('DELETE req');
+router.delete('/orders/:id',async (req,res)=>{
+    try{
+        await  Order.findOneAndDelete(req.params.id);
+         res.send('order cancelled');
+      } catch(err){
+            if(err){
+                res.send('order cannot be cancelled');
+            }
+      }
 });
 
 /*

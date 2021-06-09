@@ -1,11 +1,22 @@
 const mongoose=require("mongoose");
 const orderScheme= new mongoose.Schema({
     
-    ProductId:{
-        type:mongoose.SchemaTypes.ObjectId,
+    productimage:{
+        type:String,
         required:true
     },
-    
+    productname:{
+        type:String,
+        require:true
+    },
+    price:{
+        type:Number,
+        required:true
+    },
+    category:{
+        type:String,
+        required:true
+    }
     
 });
 

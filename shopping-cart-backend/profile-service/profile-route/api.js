@@ -21,14 +21,11 @@ const User=require('../profile-model/model');
  *          data:
  *            type: object
  *            properties:
- *              id: 
- *                type: integer
- *                description: The user id
- *                example: 0
- *              name:
+ *              username:
  *                type: string
  *                description: The user name.
  *                example: marry
+ *                     
  * 
  *     
  */
@@ -100,18 +97,27 @@ router.post('/signup',async (req,res)=>{
 
 
 router.post('/login',async (req,res)=>{
-    const user=await User.findOne({emailid:req.body.emailid});
-    if(!user) return res.status(400).json({message:'oops...user does not exist!'});
+    try{
+        const user=await User.findOne({emailid:req.body.emailid});
+        if(!user) return res.status(400).json({message:'oops...user does not exist!'});
+        
+        const validPassword = await bcrypt.compare(req.body.password,user.password);
+        if(!validPassword) return res.status(400).json({message:"Oops...password is incorrect"});
     
-    const validPassword = await bcrypt.compare(req.body.password,user.password);
-    if(!validPassword) return res.status(400).json({message:"Oops...password is incorrect"});
+        const token =await jwt.sign({_id:user._id},'tokensecret',{expiresIn:'12h'});
+        if(token) {
+       // return res.status(200).json(token);
+       res.send('logged in');
+        res.send(token);
+        console.log('succesfully loged in');
+        }
+    } catch(err){
+        if(err){
+            res.send('unable to login');
+        }
 
-    const token =await jwt.sign({_id:user._id},'tokensecret',{expiresIn:'12h'});
-    if(token) {
-   // return res.status(200).json(token);
-    res.send(token);
-    console.log('succesfully loged in');
     }
+    
    
     
 });
